@@ -2,8 +2,8 @@ import { useCallback, useRef, useState } from "react";
 import _ from "lodash";
 // Advanced: implement a filter that filters a long list of strings
 
-// solution 1: debounce
-// solution 2: submit button / enter key
+// Solution 1: debounce > useCallback + useRef
+// Solution 2: submit button / enter key
 export function MyFilter() {
   const [value, setValue] = useState("");
   const [result, setResult] = useState<string[]>(myLongArray);
