@@ -6,7 +6,8 @@
 
 import { MyFilter } from "./components/MyFilter";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
-import { MyRender } from "./components/Render";
+import { MyHeavyRender } from "./components/Render";
+import { Infinite } from "./components/Infinite";
 
 function App() {
   return (
@@ -15,15 +16,17 @@ function App() {
         <nav>
           Optimization
           <div style={{ display: "flex", gap: 10 }}>
-            <Link to="/">Home</Link> | <Link to="/filter">Filter</Link> |
-            <Link to="/render">Render</Link>
+            <Link to="/">Home</Link> |<Link to="/filter">Filter</Link> |
+            <Link to="/heavy-render">Heavy Render</Link> |
+            <Link to="/infinite">Infinite</Link>
           </div>
         </nav>
         <div style={{ paddingTop: 20 }}>
           <Routes>
             <Route path="/" exact element={<div />} />
             <Route path="/filter" element={<MyFilter />} />
-            <Route path="/render" element={<MyRender />} />
+            <Route path="/heavy-render" element={<MyHeavyRender />} />
+            <Route path="/infinite" element={<Infinite />} />
           </Routes>
         </div>
       </div>

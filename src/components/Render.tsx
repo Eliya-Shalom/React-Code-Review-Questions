@@ -1,10 +1,15 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
-// Render long list of items, bad user experience when typing in the input and when clicking the button
-// Solution: useMemo
-export function MyRender(props: {}) {
+// Problem: bad performance when rendering a long list of items while typing in an input and clicking a button
+// Solution: useMemo / useRef
+export function MyHeavyRender(props: {}) {
   const [value, setValue] = useState("");
   const [count, setCount] = useState(0);
+
+  const renderList = useMemo(
+    () => myLongArray.map((item, index) => <li key={index}>{item}</li>),
+    []
+  );
 
   return (
     <div
@@ -17,11 +22,7 @@ export function MyRender(props: {}) {
     >
       <input value={value} onChange={(e) => setValue(e.target.value)} />
       <button onClick={() => setCount(count + 1)}>Click</button> {count}
-      <ul>
-        {myLongArray.map((item, index) => (
-          <li key={index}>{item}</li>
-        ))}
-      </ul>
+      <ul>{renderList}</ul>
     </div>
   );
 }
