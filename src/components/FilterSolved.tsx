@@ -1,12 +1,11 @@
 import { useCallback, useState } from "react";
 import _ from "lodash";
-// Advanced: implement a filter that filters a long list of strings
 
-// Solution 1: debounce > useCallback + useRef
-// Solution 2: submit button / enter key
-export function MyFilter() {
+// Solution: debounce, useCallback, lodash
+
+export function FilterSolved() {
   const [value, setValue] = useState("");
-  const [result, setResult] = useState(myLongArray);
+  const [list, setList] = useState(myLongArray);
 
   const handleChange = (e) => {
     setValue(e.target.value);
@@ -16,7 +15,7 @@ export function MyFilter() {
   const debouncedFilter = useCallback(
     _.debounce((value: string) => {
       console.log("!filtering");
-      setResult(myLongArray.filter((item) => item.includes(value)));
+      setList(myLongArray.filter((item) => item.includes(value)));
     }, 1000) as (value: string) => void,
     []
   );
@@ -28,7 +27,7 @@ export function MyFilter() {
       <br />
       <h3>Results</h3>
       <ul>
-        {result.map((item, index) => (
+        {list.map((item, index) => (
           <li key={index}>{item}</li>
         ))}
       </ul>
@@ -36,8 +35,6 @@ export function MyFilter() {
   );
 }
 
-function getRandomString() {
-  return Math.random().toString(36).substring(2);
-}
+const getRandomString = () => Math.random().toString(36).substring(2);
 
-const myLongArray = new Array(1000).fill(0).map(() => getRandomString());
+const myLongArray = new Array(15000).fill(0).map(() => getRandomString());

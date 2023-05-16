@@ -1,8 +1,7 @@
 import { useMemo, useState } from "react";
 
-// Problem: bad performance when rendering a long list of items while typing in an input and clicking a button
-// Solution: useMemo / useRef
-export function MyHeavyRender(props: {}) {
+// Solution: useMemo. This part of the node won't be re-created on every render.
+export function HeavyRenderSolved(props: {}) {
   const [value, setValue] = useState("");
   const [count, setCount] = useState(0);
 
